@@ -1,7 +1,18 @@
-import re
+from functools import wraps
 
-old_list = ['abc123', 'def456', 'ghi789']
-new_list = [x for x in old_list if re.search('abc', x)]
+def currency(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        return '$' + str(f(*args, **kwargs))
 
-for item in new_list:
-    print(item)
+    return wrapper
+
+
+@currency
+def price_with_tax(price):
+    return ROUND(price * (1 + (7.25 * .01))
+
+deger = float(input('Deger'))
+deger = price_with_tax(deger)
+deger = round(int(deger),2)
+print(deger)

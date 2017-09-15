@@ -1,22 +1,24 @@
-file = open("c:/hedef.txt", "r")
-dosyaoku =[]
-list1=[]
-list2=[]
-for line in file:
-    dosyaoku = line.split(' ')
-    list1 = []
-    sayi = 0
-    for i in range(len(dosyaoku)):
-        list1.append(int(dosyaoku[i]))
-        minsayi = min(list1)
-        maxsayi = max(list1)
-    for i in range(len(list1)):
-        if i == len(list1) - 1:
-           if list1[i - 2] != minsayi and list1[i - 2] != maxsayi:
-              sayi = list1[i - 2]
-           if list1[i - 1] != minsayi and list1[i - 1] != maxsayi:
-               sayi = list1[i - 1]
-           if list1[i] != minsayi and list1[i] != maxsayi:
-               sayi = list1[i]
+def thirty_convert(num, factor):
+    num2  = num[4:]
+    num1  = num[0:3]
+    num32 = int ( num2 ) / factor
+    if num32 == 0:
+       return num1
+    elif num32 == 1:
+       return int ( num1 ) + int ( num32 )
+    else:
+       return int ( num1 ) + num32
 
-    print(sayi)
+
+def thirty_dec_convert(num, factor):
+    num2  = num[4:]
+    num1  = num[0:3]
+    if num2 == '':
+       num32 = factor
+    else:
+       num32 = int ( num2 ) * factor / 100
+    num   = str ( num1 ) + '-' + str ( int(num32) )
+    return num
+
+print ( thirty_convert     ( '100-16', 32 ) )
+print ( thirty_dec_convert ( '101', 32 ) )
